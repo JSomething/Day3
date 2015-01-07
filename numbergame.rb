@@ -1,46 +1,24 @@
-# puts rand(1..100)
-# answer = rand(1..100)
-answer = 50
-attempts = 0
-# max_attempts = 5
-@game_on = false
-puts "Guess the number, save the cheerleader."
-user_guess = gets.chomp.to_i
+answer = rand(1..100)
+# answer = 50
+tries = 0
 
-def guess user_guess, answer, attempts
-	if user_guess == answer
-		@game_on = true
-		puts "Well played, it took you #{attempts} tries, though."
-		abort
-	elsif user_guess > answer
+puts "Guess the number, save the world."
+
+user_answer = gets.chomp.to_i
+tries += 1
+
+until user_answer == answer || tries == 5 do
+	if user_answer > answer
 		puts "Try lower, loser."
-	elsif user_guess < answer
+	elsif user_answer < answer
 		puts "Try higher, loser."
 	end
+	user_answer = gets.chomp.to_i
+	tries += 1
 end
 
-
-
-while !@game_on && attempts < 5
-	# puts "Guess away"
-	guess(user_guess, answer, attempts)
-	user_guess = gets.chomp.to_i
-	attempts += 1
+if user_answer == answer
+	puts "Congrats, took you #{tries} tries, though."
+else
+	puts "Better luck next time."
 end
-
-
-
-
-# until user_guess == answer || attempts == max_attempts do 
-# 	if user_guess > answer
-# 		puts "Try lower, loser."
-# 	elsif user_guess < answer
-# 		puts "Try higher, loser."
-# 	end
-# 	user_guess = gets.chomp.to_i
-# 	attempts += 1
-# end
-
-# puts "Boom. Took you #{attempts} tries, though."
-
-	
